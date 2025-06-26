@@ -1,84 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Derek Johnson • Embarcadero Blog Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin:40px; background:#f9f9f9; }
-    header { text-align:center; margin-bottom:40px; }
-    section { margin-bottom:60px; }
-    h2 { background:#0055A5; color:white; padding:10px; }
-    .post-card { display:flex; align-items:center; background:white; padding:10px; margin:10px 0; border-radius:4px; }
-    .post-card img { width:100px; height:70px; object-fit:cover; margin-right:15px; border-radius:4px; }
-    .post-card a { font-size:1.1em; color:#0055A5; text-decoration:none; }
-    .flag { font-size:0.9em; color:#777; margin-left:8px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header nav h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #333;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        display: none;
+      }
+
+      header nav h1 {
+        font-size: 20px;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <header>
+    <nav>
+      <h1>MyPortfolio</h1>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<header>
-  <h1>Derek Johnson – Embarcadero Blog Portfolio</h1>
-  <p>38 posts covering productivity, AI, Windows tools, and RAD Studio updates.</p>
-</header>
+  <section class="hero">
+    <h2>Hello, I'm a Web Developer</h2>
+    <p>Passionate about building beautiful and functional websites with clean code.</p>
+  </section>
 
-<section>
-  <h2>🚀 Productivity &amp; Automation</h2>
-  <p>Strategic insights for streamlining workflows and boosting developer efficiency.</p>
-  <!-- Example thumbnail usage -->
-  <div class="post-card">
-    <img src="https://blogs.embarcadero.com/3-trends-you-may-have-missed-about-windows-app-development//image" alt="">
-    <div>
-      <a href="https://blogs.embarcadero.com/3-trends-you-may-have-missed-about-windows-app-development/">3 Trends You May Have Missed About Windows App Development</a>
+  <section class="section" id="about">
+    <h3>About Me</h3>
+    <p>I specialize in front-end development with a strong focus on design and UX. I'm always learning and exploring new tools and frameworks to stay current.</p>
+  </section>
+
+  <section class="section" id="projects">
+    <h3>Projects</h3>
+    <div class="projects">
+      <div class="project-card">
+        <h4>Portfolio Website</h4>
+        <p>A modern personal portfolio to showcase my skills and projects.</p>
+      </div>
+      <div class="project-card">
+        <h4>Weather App</h4>
+        <p>Built with OpenWeather API and animated backgrounds using vanilla JS.</p>
+      </div>
+      <div class="project-card">
+        <h4>Todo List</h4>
+        <p>A minimalist to-do app with localStorage persistence.</p>
+      </div>
     </div>
-  </div>
-  <div class="post-card">
-    <img src="https://blogs.embarcadero.com/windows-tools-for-developers-expectations-vs-reality//image" alt="">
-    <div><a href="https://blogs.embarcadero.com/windows-tools-for-developers-expectations-vs-reality/">Windows Tools For Developers: Expectations vs Reality</a></div>
-  </div>
-  <!-- Non-English translated -->
-  <div class="post-card">
-    <img src="https://blogs.embarcadero.com/this-is-how-to-explain-automation-to-your-boss//pexels-thisisengineering-3861958-2" alt="">
-    <div><a href="https://blogs.embarcadero.com/this-is-how-to-explain-automation-to-your-boss/">How to Explain Automation to Your Boss</a> <span class="flag">🇩🇪 German</span></div>
-  </div>
-  <!-- List remaining posts without thumbnails -->
-  <ul>
-    <li><a href="https://blogs.embarcadero.com/de/was-ist-automatisierung-und-warum-ist-sie-gerade-jetzt-wichtig/">What Is Automation and Why Is It Important Now? (German)</a></li>
-    <li><a href="https://blogs.embarcadero.com/de/so-erklaren-sie-ihrem-chef-die-automatisierung/">How to Explain Automation to Your Boss (German)</a></li>
-    <li><a href="https://blogs.embarcadero.com/es/what-is-automation-and-why-does-it-matter-right-now/">What Is Automation and Why Does It Matter (Spanish)</a></li>
-    <li><a href="https://blogs.embarcadero.com/fr/what-is-automation-and-why-does-it-matter-right-now/">What Is Automation and Why Does It Matter (French)</a></li>
-  </ul>
-</section>
+  </section>
 
-<section>
-  <h2>🧠 Artificial Intelligence &amp; Machine Learning</h2>
-  <p>Multilingual reviews of AI’s pros and cons, showcasing global content versatility.</p>
-  <ul>
-    <li><a href="https://blogs.embarcadero.com/de/die-vor-und-nachteile-der-kunstlichen-intelligenz/">The Advantages and Disadvantages of Artificial Intelligence (German)</a></li>
-    <li><a href="https://blogs.embarcadero.com/de/ein-leitfaden-fur-anfanger-zur-kunstlichen-intelligenz/">A Beginner’s Guide to Artificial Intelligence (German)</a></li>
-    <li><a href="https://blogs.embarcadero.com/ru/the-pros-and-cons-of-artificial-intelligence/">The Pros and Cons of Artificial Intelligence (Russian)</a></li>
-    <li><a href="https://blogs.embarcadero.com/fr/the-pros-and-cons-of-artificial-intelligence/">The Pros and Cons of Artificial Intelligence (French)</a></li>
-    <li><a href="https://blogs.embarcadero.com/es/the-pros-and-cons-of-artificial-intelligence/">The Pros and Cons of Artificial Intelligence (Spanish)</a></li>
-  </ul>
-</section>
+  <section class="section" id="contact">
+    <h3>Contact</h3>
+    <p>You can reach me at <strong>your@email.com</strong></p>
+  </section>
 
-<section>
-  <h2>🖥️ Windows Tools &amp; IDE Experience</h2>
-  <p>Thought leadership on optimizing Windows-centric dev environments and tools.</p>
-  <ul>
-    <li><a href="https://blogs.embarcadero.com/undeniable-proof-that-you-need-a-windows-software-maker/">Undeniable Proof That You Need a Windows Software Maker</a></li>
-    <li><a href="https://blogs.embarcadero.com/is-java-dead-what-is-the-best-alternative/">Is Java Dead? What Is the Best Alternative?</a></li>
-  </ul>
-</section>
+  <footer>
+    <p>&copy; 2025 MyPortfolio. All rights reserved.</p>
+  </footer>
+</body>
 
-<section>
-  <h2>🔧 RAD Studio, Delphi &amp; C++ Features &amp; Updates</h2>
-  <p>Latest product news and technical articles showcasing Derek’s ongoing platform expertise.</p>
-  <ul>
-    <li><a href="https://blogs.embarcadero.com/de/erste-schritte-mit-rad-studio-das-neue-e-book-fur-einen-soliden-einstieg/">Getting Started with RAD Studio – the New e‑Book (German)</a></li>
-    <li><a href="https://blogs.embarcadero.com/de/fmx-linux-fur-delphi-12-3-ist-wieder-verfugbar/">FMX Linux for Delphi 12.3 Carries On (German)</a></li>
-  </ul>
-</section>
-
-<footer>
-  <p><a href="https://blogs.embarcadero.com/author/derekjohnson/">View all 38 posts by Derek Johnson</a></p>
-</footer>
+</html>
