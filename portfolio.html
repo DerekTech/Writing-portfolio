@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-serif bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-8 py-4 border-b">
+    <h1 class="text-2xl font-bold">MyPortfolio</h1>
+    <nav class="space-x-4 text-sm font-medium">
+      <a href="index.html" class="text-gray-700 hover:text-black">Home</a>
+      <a href="#" class="text-gray-700 hover:text-black">Contact</a>
+      <a href="#" class="text-gray-700 hover:text-black"></a>
+      <a href="#" class="text-gray-700 hover:text-black"></a>
+      <a href="#" class="text-gray-700 hover:text-black"></a>
+    </nav>
+  </header>
+
+  <!-- Latest Posts -->
+  <section class="text-center py-12">
+    <p class="text-sm uppercase text-gray-500">Portfolio</p>
+    <h2 class="text-3xl font-bold mb-8">My Latest Posts</h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+      <!-- Post 1 -->
+      <div class="border p-4">
+        <img src="img/blog_thumbnail.webp" alt="Post image" class="w-full mb-4">
+        <p class="text-xs text-gray-500">Admin · Mar 22, 2023 · 1 min read</p>
+        <h3 class="font-semibold mt-2 mb-1">2021 Face mask trends</h3>
+        <div class="flex items-center text-sm justify-between mt-2 text-gray-500">
+          <span>👁️ 30</span>
+          <span>❤️ 2</span>
+        </div>
+      </div>
+      <!-- Post 2 -->
+      <div class="border p-4">
+        <img src="img/blog_thumbnail.webp" alt="Post image" class="w-full mb-4">
+        <p class="text-xs text-gray-500">Admin · Mar 22, 2023 · 2 min read</p>
+        <h3 class="font-semibold mt-2 mb-1">What to wear to an at-home workout?</h3>
+        <div class="flex items-center text-sm justify-between mt-2 text-gray-500">
+          <span>👁️ 17</span>
+          <span>❤️ 1</span>
+        </div>
+      </div>
+      <!-- Post 3 -->
+      <div class="border p-4">
+        <img src="img/blog_thumbnail.webp" alt="Post image" class="w-full mb-4">
+        <p class="text-xs text-gray-500">Admin · Mar 22, 2023 · 1 min read</p>
+        <h3 class="font-semibold mt-2 mb-1">The benefits of CBD skin care products</h3>
+        <div class="flex items-center text-sm justify-between mt-2 text-gray-500">
+          <span>👁️ 3</span>
+          <span>❤️ 1</span>
+        </div>
+      </div>
+    </div>
+    <a href="portfolio-readmore.html" class="mt-8 px-6 py-2 border hover:bg-gray-100 inline-block">Read More</a>
+  </section>
+
+  <!-- Writing Categories Section -->
+  <section class="text-center bg-gray-50 py-12">
+    <h2 class="text-center text-3xl font-bold mb-8">Writing Categories</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
+      <!-- Category 1 -->
+      <div class="group">
+        <div class="relative">
+          <img src="img/blog_thumbnail.webp" alt="Category" class="w-full object-cover rounded-lg shadow">
+          <a href="portfolio-readmore.html" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">+</a>
+        </div>
+        <a href="portfolio-readmore.html" class="mt-4 inline-block px-6 py-2 border hover:bg-gray-100">Digital Transformation</a>
+      </div>
+
+      <!-- Category 2 -->
+      <div class="group">
+        <div class="relative">
+          <img src="img/blog_thumbnail.webp" alt="Category" class="w-full object-cover rounded-lg shadow">
+          <a href="portfolio-readmore.html" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">+</a>
+        </div>
+        <a href="portfolio-readmore.html" class="mt-4 inline-block px-6 py-2 border hover:bg-gray-100">Digital Transformation</a>
+      </div>
+
+      <!-- Category 3 -->
+      <div class="group">
+        <div class="relative">
+          <img src="img/blog_thumbnail.webp" alt="Category" class="w-full object-cover rounded-lg shadow">
+          <a href="portfolio-readmore.html" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">+</a>
+        </div>
+        <a href="portfolio-readmore.html" class="mt-4 inline-block px-6 py-2 border hover:bg-gray-100">Digital Transformation</a>
+      </div>
+
+      <!-- Category 4 -->
+      <div class="group">
+        <div class="relative">
+          <img src="img/blog_thumbnail.webp" alt="Category" class="w-full object-cover rounded-lg shadow">
+          <a href="portfolio-readmore.html" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">+</a>
+        </div>
+        <a href="portfolio-readmore.html" class="mt-4 inline-block px-6 py-2 border hover:bg-gray-100">Digital Transformation</a>
+      </div>
+    
+      <div class="col-span-full flex justify-center mt-8">
+        <a href="portfolio-readmore.html" class="px-6 py-2 border hover:bg-gray-100">View All</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

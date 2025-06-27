@@ -4,183 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nicol Rider | Editor Portfolio</title>
+  <title>Derek Johnson | Writer Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background-color: #f4f4f4;
-      color: #000;
-    }
-
-    header {
-      background-color: #fff;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand span {
-      width: 12px;
-      height: 12px;
-      background: #ffb600;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .brand h1 {
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .brand small {
-      color: #666;
-      font-size: 12px;
-      margin-left: 5px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #000;
-      font-size: 14px;
-    }
-
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
-      text-align: left;
-    }
-
-    .hero-img {
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-right: 40px;
-    }
-
-    .hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-text {
-      max-width: 400px;
-    }
-
-    .hero-text h2 {
-      font-size: 48px;
-      font-weight: 600;
-    }
-
-    .hero-text p {
-      font-size: 14px;
-      margin: 15px 0;
-      color: #333;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .hero-buttons a {
-      display: inline-block;
-      padding: 20px 0;
-      width: 100px;
-      border-radius: 50%;
-      text-align: center;
-      color: #000;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .btn-yellow { background: #f4b400; }
-    .btn-red { background: #f44336; color: white; }
-    .btn-blue { background: #00bcd4; }
-
-    footer {
-      margin-top: 60px;
-      padding: 30px 40px;
-      border-top: 1px solid #ddd;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      font-size: 14px;
-      background: #fff;
-    }
-
-    footer div {
-      margin: 10px 0;
-    }
-
-    footer p, footer a {
-      color: #333;
-      text-decoration: none;
-    }
-
-    .social-icons a {
-      margin-right: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-img {
-        margin: 0 0 20px 0;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-    }
-  </style>
+  <link href="style.css" rel="stylesheet">
+  
 </head>
-
 <body>
   <header>
     <div class="brand">
       <span></span>
-      <h1>Nicol Rider <small>Editor</small></h1>
+      <h1>Derek Johnson <small>Writer</small></h1>
     </div>
     <nav>
       <ul>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -188,15 +26,15 @@
 
   <section class="hero">
     <div class="hero-img">
-      <img src="https://via.placeholder.com/300x300.png?text=Your+Photo" alt="Profile photo">
+      <img src="img/photo.JPG" alt="Profile photo">
     </div>
     <div class="hero-text">
       <h2>Hello</h2>
       <p><strong>A Bit About Me</strong><br>
         I'm a paragraph. Click here to add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about you.</p>
       <div class="hero-buttons">
-        <a href="#resume" class="btn-yellow">Resume</a>
-        <a href="#projects" class="btn-red">Projects</a>
+        <a href="skills.html" class="btn-yellow">Skills</a>
+        <a href="portfolio.html" class="btn-red">Portfolio</a>
         <a href="#contact" class="btn-blue">Contact</a>
       </div>
     </div>
@@ -212,8 +50,7 @@
     <div>
       <p><strong>Follow Me</strong><br>
         <span class="social-icons">
-          <a href="#">LinkedIn</a>
-          <a href="#">Twitter</a>
+          <a href="https://www.linkedin.com/in/derek-johnson-techwriter/">LinkedIn</a>
         </span>
       </p>
     </div>
