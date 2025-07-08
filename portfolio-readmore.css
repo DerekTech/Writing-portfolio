@@ -34,12 +34,12 @@ a:hover {
 }
 
 .nav .active {
-  color: #B88E61; /* Soft golden highlight */
+  color: #000; /* Soft golden highlight */
   font-weight: bold;
 }
 
 .hero {
-  background-color: #DCB8AB;
+  background-color: #fff;
   padding: 60px 20px;
   text-align: center;
 }
