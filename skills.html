@@ -5,19 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skills</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="skills.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
 </head>
 <body>
 <!-- Header -->
   <header class="flex justify-between items-center px-8 py-4 border-b">
     <h1 class="text-2xl font-bold">Skills</h1>
-    <nav class="space-x-4 text-sm font-medium">
-      <a href="index.html" class="text-gray-700 hover:text-black">Home</a>
-      <a href="portfolio.html" class="text-gray-700 hover:text-black">Portfolio</a>
-      <a href="contact.html" class="text-gray-700 hover:text-black">Contact</a>
-      <a href="#" class="text-gray-700 hover:text-black"></a>
-      <a href="#" class="text-gray-700 hover:text-black"></a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <nav id="nav-menu" class="space-x-4 text-sm font-medium">
+      <ul>
+        <a href="index.html" class="text-gray-700 hover:text-black">Home</a>
+        <a href="portfolio.html" class="text-gray-700 hover:text-black">Portfolio</a>
+        <a href="contact.html" class="text-gray-700 hover:text-black">Contact</a>
+        <a href="#" class="text-gray-700 hover:text-black"></a>
+        <a href="#" class="text-gray-700 hover:text-black"></a>
+      </ul>
+      </nav>
     </nav>
   </header>
 
@@ -81,5 +92,36 @@
       </div>
     </div>
   </section>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = navMenu.querySelectorAll('a');
+
+    // Toggle nav on hamburger click
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent click from bubbling to document
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+
+    // Close nav when clicking a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    // Close nav when clicking anywhere outside nav/hamburger
+    document.addEventListener('click', (e) => {
+      const clickedOutside = !navMenu.contains(e.target) && !hamburger.contains(e.target);
+      if (clickedOutside) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      }
+    });
+  </script>
+
 </body>
 </html>

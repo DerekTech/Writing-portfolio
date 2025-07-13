@@ -12,11 +12,20 @@
   <!-- Header -->
   <header class="header">
     <h1 class="logo">@Derek</h1>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="#" class="active">Productivity & Automation</a>
-      <a href="contact.html">Contact</a>
-      <a href="#"></a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="nav-menu" class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#" class="active">Productivity & Automation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#"></a></li>
+      </ul>
     </nav>
   </header>
 
@@ -104,6 +113,36 @@
     <!-- Add more blog-card blocks here -->
 
   </section>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = navMenu.querySelectorAll('a');
+
+    // Toggle nav on hamburger click
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent click from bubbling to document
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+
+    // Close nav when clicking a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    // Close nav when clicking anywhere outside nav/hamburger
+    document.addEventListener('click', (e) => {
+      const clickedOutside = !navMenu.contains(e.target) && !hamburger.contains(e.target);
+      if (clickedOutside) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      }
+    });
+  </script>
 
 </body>
 </html>

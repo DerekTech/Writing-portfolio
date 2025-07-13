@@ -170,6 +170,12 @@ footer p, footer a {
     margin-right: 10px;
 }
 
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
 @media (max-width: 768px) {
     .hero {
     flex-direction: column;
@@ -209,7 +215,7 @@ footer p, footer a {
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     padding-top: 4rem;
     z-index: 1000;
-    opacity: 80%;
+    opacity: 100%;
   }
 
   nav.open {
