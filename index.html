@@ -57,6 +57,62 @@
     </div>
   </section>
 
+  <section class="testimonials">
+    <h2>What My Clients Are Saying</h2>
+    <div class="testimonial-list">
+      
+      <div class="testimonial-card">
+        <img src="img/testimonial_img/Froala.png" alt="Anita O." class="testimonial-img">
+        <div class="testimonial-content">
+          <p>
+            <span class="review-snippet">
+              “Derek's creativity and expertise contributed to the success of our content endeavors...”
+            </span>
+            <span class="review-full" style="display: none;">
+              Derek showcased exceptional talent and dedication during their tenure with the company. His creativity and expertise brought immense value to our team and contributed to the success of our content endeavors. Consistently delivered high quality written pieces, demonstrating a deep understanding of the craft and a commitment to excellence.”
+            </span>
+            <a href="#" class="read-more" onclick="toggleReview(this); return false;">Read more</a>
+          </p>
+          <span>— Head of Content, Froala.</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <img src="img/testimonial_img/greenisms.png" alt="Anita O." class="testimonial-img">
+        <div class="testimonial-content">
+          <p>
+            <span class="review-snippet">
+              “Derek provided the content that I was looking for, and he did so in half the time that I expected...”
+            </span>
+            <span class="review-full" style="display: none;">
+              Derek was great! He provided the articles and content that I was looking for, and he did so in half the time that I expected. His communication was great, and I will be publishing his articles on my website shortly.”
+            </span>
+            <a href="#" class="read-more" onclick="toggleReview(this); return false;">Read more</a>
+          </p>
+          <span>— Kevin Bolland, Greenisms.</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <img src="img/testimonial_img/sencha.svg" alt="Anita O." class="testimonial-img">
+        <div class="testimonial-content">
+          <p>
+            <span class="review-snippet">
+              “Derek is an excellent freelancer and is a great asset to our company. Highly recommended!...”
+            </span>
+            <span class="review-full" style="display: none;">
+              Derek is an excellent freelancer and is a great asset to our company. Highly recommended!.”
+            </span>
+            <a href="#" class="read-more" onclick="toggleReview(this); return false;">Read more</a>
+          </p>
+          <span>— Head of Marketing & Content, Sencha Ext Js.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
   <footer>
     <div>
       <p><strong>Phone</strong><br>+1 (505) 472 5197 </p>
@@ -76,6 +132,24 @@
       <p>&copy; 2025 By Nicol Rider.<br>Powered and secured by Wix</p>
     </div>
   </footer>
+
+  <script>
+    function toggleReview(link) {
+      const snippet = link.parentElement.querySelector('.review-snippet');
+      const fullText = link.parentElement.querySelector('.review-full');
+
+      if (fullText.style.display === 'none') {
+        fullText.style.display = 'inline';
+        snippet.style.display = 'none';
+        link.textContent = 'Show less';
+      } else {
+        fullText.style.display = 'none';
+        snippet.style.display = 'inline';
+        link.textContent = 'Read more';
+      }
+    }
+  </script>
+
 
   <script>
     const hamburger = document.getElementById('hamburger');
