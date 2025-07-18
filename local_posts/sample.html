@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Blog Post</title>
+  <link rel="stylesheet" href="local_posts.css"> <!-- Assuming same CSS file -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span></span>
+      <h1>Derek Johnson <small>Writer</small></h1>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="local-posts">
+    <h1 class="post-title">Use Chatbots to Drive Sales, Retention, and Loyalty</h1>
+    <div class="post-date">Posted on Mar 10, 2021</div>
+
+    <!-- Featured Blog Image -->
+    <img src="/img/thumbnails/marketing.jpg" alt="Notebook with pen" class="featured-image">
+
+    
+    <p class="post-content">
+      In today's digital landscape, chatbots have emerged as powerful tools for businesses to enhance customer engagement and drive sales. By leveraging artificial intelligence, chatbots can provide personalized experiences, answer queries, and even facilitate transactions. This post explores how businesses can effectively implement chatbots to boost retention and loyalty.
+    </p>
+    
+    <a href="index.html" class="back-link">← Back to Blog</a>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = navMenu.querySelectorAll('a');
+
+    // Toggle nav on hamburger click
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent click from bubbling to document
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+
+    // Close nav when clicking a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    // Close nav when clicking anywhere outside nav/hamburger
+    document.addEventListener('click', (e) => {
+      const clickedOutside = !navMenu.contains(e.target) && !hamburger.contains(e.target);
+      if (clickedOutside) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      }
+    });
+  </script>
+  
+</body>
+</html>
