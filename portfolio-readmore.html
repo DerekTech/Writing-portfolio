@@ -22,7 +22,7 @@
     <nav id="nav-menu" class="nav">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio-readmore.html" class="active">All Posts</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="#"></a></li>
       </ul>
@@ -34,20 +34,21 @@
     <h2>All Posts</h2>
   </section>
 
-  <!-- Filter + Login -->
-  <div class="filter-bar">
-    <div class="filters">
-      <a href="#" class="active">All Posts</a>
-      <a href="digitaltransformation.html">Digital Transformation</a>
-      <a href="productivity&automation.html">Productivity & Automation</a>
-      <a href="artificial&intelligence.html">Artificial Intelligence & Machine Learning</a>
-      <a href="it&software.html">IT & Software Development</a>
-      <a href="webscraping.html">Web Scraping</a>
-      <a href="marketing.html">Marketing</a>
-      <a href="tutorials.html">How-To Guides & Tutorials</a>
-      <a href="windowstools.html">Windows Tools & IDE Experience</a>
-      <a href="radstudio.html">RAD Studio, Delphi & C++ Features & Updates</a>
-    </div>
+  <!-- Filter -->
+  <div class="filter-dropdown">
+    <label for="category-select">Filter by Category:</label>
+    <select id="category-select" onchange="location = this.value;">
+      <option value="#" selected>All Posts</option>
+      <option value="digitaltransformation.html">Digital Transformation</option>
+      <option value="productivity&automation.html">Productivity & Automation</option>
+      <option value="artificial&intelligence.html">AI & Machine Learning</option>
+      <option value="it&software.html">IT & Software Development</option>
+      <option value="webscraping.html">Web Scraping</option>
+      <option value="marketing.html">eCommerce & Marketing</option>
+      <option value="tutorials.html">Guides & Tutorials</option>
+      <option value="windowstools.html">Windows Tools & IDEs</option>
+      <option value="radstudio.html">RAD Studio & Delphi</option>
+    </select>
   </div>
 
   <!-- Blog Grid -->

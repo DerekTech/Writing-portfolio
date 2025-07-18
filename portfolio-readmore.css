@@ -81,6 +81,41 @@ nav ul li a {
   margin: 0;
 }
 
+.filter-dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.filter-dropdown label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+#category-select {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+#category-select:hover,
+#category-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 4px 14px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+
 .filter-bar {
   display: flex;
   justify-content: center;
