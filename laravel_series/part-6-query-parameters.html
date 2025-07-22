@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Query Parameters & Route Parameters in Laravel</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <h1>Query Parameters & Route Parameters (wildcards)</h1>
+
+  <h2>Query Parameters?</h2>
+
+  <p>Query parameters are what we use to pass in values of variables into a URL, as we can see in the following URL; <code>pizzahouse.com/pizzas?price=10</code>. The question mark denotes the start of what is referred to as a query string, which includes one or more query parameters. Here, we have one query parameter with the name "price" and value = 10.</p>
+
+  <p>Query strings are common in marketing URLs. When a user clicks on a specific link, the parameters in the URL read where the user clicks from. For example:</p>
+
+  <pre><code class="language-bash">pizzahouse.com/pizzas?source=facebook&amp;campaign=half_price_promo</code></pre>
+
+  <p>
+    Here, we have two parameters separated by the ampersand sign (&). When the user clicks on the pizzahouse link, our server reads that they clicked on our half-price promo campaign link on Facebook.
+  </p>
+
+  <p>
+    So, with this data, we can provide a tailored experience to the users by showing them pizzas that are up for the half-price promo. This is one of the use cases of query parameters.
+    Now, let's look at how we can detect these parameters and access their values in Laravel.
+  </p>
+
+  <p>
+    Let's assume a user goes to the URL; <code>pizzahouse.com/pizzas?name=john</code>, how do we access that information in Laravel?
+  </p>
+
+  <p>
+    It's a simple process; first, we head to the pizzas route handler, because that's the URL the user visits.
+    We can access any parameter by using the <code>request</code> function that takes in the name of the parameter as an argument.
+    Therefore, in this case, this is how we'll access the name parameter:
+  </p>
+
+  <pre><code class="language-php">Route::get('/pizzas', function () {
+
+    // get data from database
+    $pizza = [
+        ['type' => 'hawaiian', 'base' => 'cheesy crust'],
+        ['type' => 'volcano', 'base' => 'garlic crust'],
+        ['type' => 'veg supreme', 'base' => 'thin & crispy']
+    ];
+
+    $name = request('name');
+
+    return view('pizzas', [
+        'pizzas' => $pizza,
+        'name' => $name,
+    ]);
+
+});</code></pre>
+
+  <p>
+    If we output this in the <code>pizzas.blade.php</code> folder and save, we will get the value of the parameter where we output it, on the pizzas page.
+    Go to the URL <code>/pizzas/?name=john</code> on your preview page, and you'll get the name "john" as seen below:
+  </p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd-kmxr8vWFLO8a8Zvhc04yA3a22mCH2j09QyJuv7nC2TJV_Rw_qsoR46muj1pXKO8pjLznXEbg9lDdIWIhWo7Tal_QihLBpbrPdFnce38zpLN-a7dBSNpM1Jx-e14ScgRETFOwjVeCaiBReYchvwB-1jo?key=v-7vV92isqAFgdRre27kTQ" alt="Query parameter output" />
+
+  <h2>Route Parameters (wildcards)</h2>
+
+  <p>
+    Route parameters are also known as wildcards in Laravel. They are similar to query parameters in that they're variables;
+    however, they differ because they're without a variable name and question mark.
+  </p>
+
+  <p>
+    For example: <code>pizzahouse/pizzas/1</code>; where 1 is some kind of <code>{id}</code> that would return something like details of the pizza with the ID of 1.
+    If we receive a request like this in Laravel, what we'll do is detect that id (1), query the database for the pizza matching that id,
+    output it in the view, and send it back to the browser for the user.
+  </p>
+
+  <p>
+    How do we do that? Firstly, we'll create a new route to detect this <code>pizzahouse/pizzas/1</code> route;
+  </p>
+
+  <p>
+    Then we grab the <code>{id}</code> in a function as a variable, such that whatever <code>{id}</code> sent is assigned to the variable in the function.
+    Next up is using the variable to query the database for the pizza details and then sending it to the view.
+    We won't be doing anything database yet; we'll do that later on in this course.
+  </p>
+
+  <p>
+    So let's create a new view called <code>details</code>; we'll copy all the code from <code>pizzas.blade.php</code> into <code>details.blade.php</code>.
+    But we'll delete the forEach section because we are not outputting that in this view. What we want to output is <code>{id}</code>.
+  </p>
+
+  <p>Therefore, our view should look like this when we output the <code>$id</code> variable:</p>
+
+  <pre><code class="language-php">
+&lt;?php
+@extends('layouts.layout')
+
+@section('content')
+    &lt;div class="flex-center position-ref full-height"&gt;
+        &lt;div class="content"&gt;
+            &lt;div class="title m-b-md"&gt;
+                Pizza List - {{ '{{$id}}' }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+@endsection
+</code></pre>
+
+  <p>And our new route should look like this:</p>
+
+  <pre><code class="language-php">Route::get('/pizzas/{id}', function ($id) {
+
+    // use the $id variable to query the database for a record
+    return view('details', ['id' => $id]);
+
+});</code></pre>
+
+  <p>
+    We went for <code>/pizzas/{id}</code> instead of <code>/pizzas/1</code> or any other ID because hard coding the ID will take forever.
+    You can call yours whatever you want; however, <code>{id}</code> seems logical.
+  </p>
+
+  <p>
+    If we save and visit <code>/pizzas/1</code> in our preview browser, this is what we should have:
+  </p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeplL2k1oiAL_-C4z8LzpC9ncqdv0CRcVHRL2nFD23c78NUY9JsxsQcJ5PQ-7xXN18vu_y4PqfgEAE9OO1URwXhgKwkG1-ecXARkVQvFDvi0IkQgOhSkOrk8dpCuoyAAfOLIV62LpOBdvYZnhO6FHyXFmA?key=v-7vV92isqAFgdRre27kTQ" alt="Route parameter output" />
+
+  <hr />
+  <p><strong>Note:</strong> One Blade code block (<code>@extends ... @endsection</code>) was reformatted into a proper HTML-safe code block. No other content was changed.</p>
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+</body>
+</html>

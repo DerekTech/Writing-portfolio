@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blade Loops</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <h1>Files Layout</h1>
+
+  <p>So far, we have two views, the pizzas view and the welcome view. These views have the same template at the top. While it may seem easy to copy and paste this template into every view that we would create, it can become cumbersome. For example; if you want to make a change to a part of your template, you'll have to implement this change in each of your views, one after the other.</p>
+
+  <p>There's a solution to this; we can create a generic layout that we would use in each of our views. That's what this module is about, so, let's dive in.</p>
+
+  <p><strong>Step 1:</strong> Create a folder named "Layout" in views, then create a file in the layout folder named <code>layout.blade.php</code>.</p>
+
+  <p><strong>Step 2:</strong> In the <code>pizzas.blade.php</code> file, copy the top, starting from <code>&lt;!DOCTYPE html&gt;</code> to the opening <code>&lt;body&gt;</code> tag, and paste in the <code>layout.blade.php</code> file. Then delete the copied part from the <code>pizzas.blade.php</code>. Now, cut the closing <code>&lt;/body&gt;</code> and <code>&lt;/html&gt;</code> tags and paste them at the bottom of the <code>layout.blade.php</code> file.</p>
+
+  <p><strong>Step 3:</strong> We call this template in our views by using the Blade directive:</p>
+
+  <pre><code class="language-php">@extends('layouts.layout')</code></pre>
+
+  <p>This tells Laravel that we want to use this template (<code>layout.blade.php</code>) in the view, but it doesn't tell Laravel what to do with the other content in the view.</p>
+
+  <p><strong>Step 4:</strong> We have to define what's remaining in our <code>pizzas.blade.php</code> file as a section, so we can inform Laravel what to do with the section. To do this, we embed the content in:</p>
+
+  <pre><code class="language-php">@section('content')</code></pre>
+  <p>and close with</p>
+  <pre><code class="language-php">@endsection</code></pre>
+
+  <p><strong>Step 5:</strong> We want Laravel to place this section in the body of the template, to do this, we place:</p>
+
+  <pre><code class="language-php">@yield('content')</code></pre>
+
+  <p>in the <code>&lt;body&gt;</code> tag of our <code>layout.blade.php</code>.</p>
+
+  <p>Hence, your pizzas view should look like this:</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXehjY8Vn6xuwHLhAAZciMrb8lg-MrtVWv73Z6yirmAVQY84qGXdgk7yMl0dPph9ILOEA5u6PpSkdn1B1_mI6RCkAh0TnZKl6oZDVAbcqz9VndC0FDkMs7PtwHPh7QxI09UxDcmNhbGSv-stHso7-fmX-Bo?key=S7T5iCW-BVyGjlwCxiU_5Vvr" alt="pizzas view image" />
+
+  <p>And your layout.blade.php should look like this:</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdiEKcMHKoTixGXnuXf8fKb7ZUvseLY8evSAxBX05v6TeeQgxMWMCunftMFvXd3umth7GoNu0-oY-A7iJ3WG9ggxYtD53Wf_hMjkXly37iExOzOqd6ZxdLsCANUV5kIYtgPnuUwmSvUVSGqLzhjXmR2hk8?key=S7T5iCW-BVyGjlwCxiU_5Vvr" alt="layout.blade.php image" />
+
+  <p>If we save this and preview, we should see no changes, because we've not changed our code, we only restructured the code.</p>
+
+  <p>Now, do the same for the <code>welcome.blade.php</code> file as an exercise.</p>
+
+  <p>Let's add a footer in our layout. In the body tag of the <code>layout.blade.php</code> file, add a footer tag, and add some CSS in the style section like so:</p>
+
+  <pre><code class="language-css">footer {
+  background: #eee;
+  padding: 20px;
+  text-align: center;
+}</code></pre>
+
+  <p>Then in the body:</p>
+
+  <pre><code class="language-html">@yield('content')
+
+<footer>
+  copyright 2020 Pizza House
+</footer>
+</code></pre>
+
+  <p>If we save and preview, we'll see the footer at the bottom of every page, like so:</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdmnMtPKcM7SgOE4bKp9EBZB98JBYzgcvqOZp1yF4OFwFH-czLFYkAeX00JbRIPzXCwGNe5sfKpI2yksfiro59CoEAhIUd8T5rQJ1l1PDSRCyGVmdXHXM4xZElLcQOjHhMGyFI6EOqZC66gFNpB8a5nUw?key=S7T5iCW-BVyGjlwCxiU_5Vvr" alt="footer preview" />
+
+  <p>Currently, we are placing our CSS in our views, we want to create an external file so that our frontend can have access to it.</p>
+
+  <p>To do this, create a folder named <code>css</code> in the <code>public</code> folder, and then create a file called <code>main.css</code> in the <code>css</code> folder. Now, head to the <code>layout.blade.php</code> file to cut everything in the <code>&lt;style&gt;</code> tag and paste into the <code>main.css</code> file.</p>
+
+  <p>To link the <code>main.css</code> file to the <code>layout.blade.php</code> file, we place:</p>
+
+  <pre><code class="language-html">&lt;link href="/css/main.css" rel="stylesheet"&gt;</code></pre>
+
+  <p>We use <code>/css/main.css</code> instead of <code>public/css/main.css</code> because everything in the public folder is available to the browser at root level.</p>
+
+  <p>We add styles to our main.css file if we want, but first, let's add the images we want to use for this project. In the public folder, create a folder and name it <code>img</code>. Drag or copy your image to this folder.</p>
+
+  <p>Here is the image we'll be using in this course:</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfO-AjykDEELzusFhOimamLpVReVb07howscuWobW46ou7AzmINbGpCSiMT97BSntj9_-ie8aQXT3bE1eqaswMeRf5t0JnQ7b0N8RL73QUm5C188GGMzpHxIt3Nqt7uh2hXlyEx8l-fcnezXbux8JmwjCk?key=S7T5iCW-BVyGjlwCxiU_5Vvr" alt="course image" />
+
+  <p>We can use this image in your welcome view by adding an image tag, just like we would in HTML. So head to <code>welcome.blade.php</code> and add:</p>
+
+  <pre><code class="language-html">&lt;img src="/img/pizza-house.png" alt="pizza house logo"&gt;</code></pre>
+
+  <p>Example in HTML:</p>
+  <pre><code class="language-html">&lt;div class="content"&gt;
+  &lt;img src="img/pizza-house.png" alt="pizza house logo"&gt;
+  &lt;div class="title m-b-md"&gt;
+    The North's Best Pizza
+  &lt;/div&gt;
+&lt;/div&gt;
+@endsection</code></pre>
+
+  <p>Delete the links because we don't need them and we want to style our title like so:</p>
+
+  <pre><code class="language-css">.title {
+  font-size: 50px;
+  text-transform: uppercase;
+  border-bottom: 2px solid;
+  padding: 12px 0;
+  color: #5e2195;
+}</code></pre>
+
+  <p>Save and preview:</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd_R-SH_FX0BWBdN6Hs9R-mO3jSwwL8_TPiLGxJesETAaYghTxK9LTINOPIY60asK6okXI_4Cr2bnamd6wVxvMtXsMWiqSwPrjjtu2H7uGakeoRmGfTQRawogH-gm-NaA2BuIJn9fqNoTIs0sX0LqfcJhI?key=S7T5iCW-BVyGjlwCxiU_5Vvr" alt="final preview" />
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+</body>
+</html>

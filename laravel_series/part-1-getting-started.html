@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Laravel 6 Tutorial – Getting Started</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+</head>
+<body>
+
+  <h1>What is Laravel?</h1>
+
+  <p>Laravel is an open-source PHP framework that makes building websites and apps easier. It works well with MySQL databases and is easy to connect.</p>
+
+  <p>In addition to providing you with the tools to build a secure website, Laravel comes with a host of features that will make your web development task faster. Saving you a lot of time, especially if you're building your website from scratch.</p>
+
+  <h2>Features</h2>
+
+  <p>Laravel offers so many interesting features, such as:</p>
+  <ul>
+    <li>Blade, a templating engine for creating dynamic HTML pages</li>
+    <li>An easy-to-setup authentication system</li>
+    <li>Eloquent Models that eliminate the need to write a load of SQL to query a MySQL database</li>
+    <li>An MVC (Model, View, & Control) approach</li>
+  </ul>
+
+  <p>The MVC approach refers to how you structure your code: the <strong>model</strong> represents your data logic, the <strong>view</strong> controls what the user sees (HTML), and the <strong>controller</strong> connects both.</p>
+
+  <p>We will take an in-depth look into this approach later. For now, here's what the website we'll build looks like:</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcaOltCF_ZCbBN0YecZLV5F6qWadJ39nY1glghPlfNxKT-iipDNsKY43ZmH3UYIaI5qCK3WayQRK10O8YSF94COvoxZDTb3wMdjcMnW1hZ_hW9ovv8xepYluH4xgwXrKqjotFIwm9WVIN95nEZT0h336ro?key=Rno1Y07x4YNL6pj3oJIDiA" alt="Pizza House Preview">
+
+  <p><strong>Pizza House</strong> is a simple pizza delivery website where users can order pizza, and customer service can manage orders via a backend dashboard.</p>
+
+  <p>This will be built using Laravel, the Laravel Auth system, and MySQL.</p>
+
+  <h2>Who Is This Course For?</h2>
+
+  <p>This course is for developers with basic knowledge of PHP, HTML, and CSS. It’s not a PHP beginner course, but it’s perfect if you're looking to learn Laravel 6 from the ground up.</p>
+
+  <h2>Installation</h2>
+
+  <p>Laravel needs a proper development environment. Start by installing <a href="https://www.apachefriends.org/index.html" target="_blank">XAMPP</a> which includes MySQL and PHP.</p>
+
+  <h3>Step 1:</h3>
+  <p>Install Composer from <a href="https://getcomposer.org/" target="_blank">getcomposer.org</a>.</p>
+
+  <h3>Step 2:</h3>
+  <p>After installing, run:</p>
+  <pre><code>composer -V</code></pre>
+  <p>This should return the Composer version. If not, reinstall.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc9_dgqMFxUfCaNr40cOgoPaHzH-FOAxykUIg-6fkUBp2-SVZHFMqisiN4CmNsgNMmULKd1HJxzoWzO6fyni1IXWSlpZEGzf0Gavyldqvq554qD3x64jnWrb_PDtmYlH8p0eNt1SkFlwdAR6ue094OKAYk?key=Rno1Y07x4YNL6pj3oJIDiA" alt="Composer Terminal Screenshot">
+
+  <h3>Step 3:</h3>
+  <p>Run:</p>
+  <pre><code>composer global require laravel/installer</code></pre>
+
+  <h3>Step 4:</h3>
+  <p>Create your Laravel project in your documents directory:</p>
+  <pre><code>cd documents
+cd laravel
+laravel new pizzahouse</code></pre>
+
+  <h3>Step 5:</h3>
+  <p>Navigate into the project and open with VS Code or another editor:</p>
+  <pre><code>cd pizzahouse</code></pre>
+
+  <p>In VS Code, go to <code>Terminal → New Terminal</code> to access the project terminal.</p>
+
+  <p>Start Laravel's development server:</p>
+  <pre><code>php artisan serve</code></pre>
+
+  <p>Open <code>127.0.0.1:8000</code> in your browser to see the default Laravel homepage.</p>
+
+  <a class="back-link" href="index.html">← Back to Laravel Series</a>
+
+</body>
+</html>

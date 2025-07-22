@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Laravel 6 Tutorial – Laravel Basics</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+</head>
+<body>  
+  <h1>Laravel Basics</h1>
+
+  <p>This module takes a look at how Laravel works on the backend. Let's look at the obvious example of requesting a website's page by entering its URL into a web browser. That browser sends a request to the server that houses the website requested. And if the server uses Laravel as its backend, what happens behind the scenes is shown in the image below.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeqdzfaOdmWYDyEgVau2t7iCJ9o-DHoWNX40tD0J1sJIaI5FaGmTdBOsTMUkZy7bdrK5xByd_lPNsVpXMGS4j-5Rt61KMGvTf5vMySdgUpJ07v0vbwzpv9WhrUuNd0-n-rZI-BGbZN8wDNu_xrAYB01IA?key=JRC6SFqjT-nQvzu8BPKr5iEx" alt="Laravel server request flow" class="responsive-img" />
+
+  <p>The server first receives the request and passes it onto a route file which in turn looks for the website’s URL and decides what action to take (process data, send data or retrieve data), according to the type of request sent.</p>
+
+  <p>Once that is sorted, the data is compiled into a view, which is usually an HTML template. This view is sent back to the server and then to the web browser that made the request.</p>
+
+  <h2>Route</h2>
+
+  <p>Let us take a practical look at how the route file sends a view back to the web browser, depending on the route received. For this case, we will refer to the route file in our pizzahouse project.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdWbRCQRvIfETqHfoQxM1dNEOIXdqo51vEfjnXcKqekoobx5sSiYkzlxokNEKeu-y4zs765CTPDyFooyBH41ngf6dLsiu9IMGvmF67_F5QBqEeRJXoVYqHA9XPdatMsh_9acHmbHhP3Cc8ynZ_iIbifEg?key=JRC6SFqjT-nQvzu8BPKr5iEx" alt="Route definition in Laravel" class="responsive-img" />
+
+  <p>In <code>web.php</code>, the root route is defined using:</p>
+
+  <pre><code>&lt;?php
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+</code></pre>
+
+  <p>The <code>welcome</code> view is stored in <code>resources/views/welcome.blade.php</code>.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcurKJKaXjXjwD3eJhLCxLeto0FKtXOyd-ZlqYDkZljYz442RP8mYvCSyv-Upz3G9xsU-KrpqxBF_sBGwz0nsV756MlWn37Mar9b1kw9QZsCR_SipC-DcfLpEP_kr13zEvrLdYrNE44UpfeF4WVr4QHkQ?key=JRC6SFqjT-nQvzu8BPKr5iEx" alt="Blade file sample" class="responsive-img" />
+
+  <p>This file contains Blade syntax – Laravel’s templating engine.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcGTDK1Q0TKgbpEuSTN2zKf_oheOHsUOMK4lKKNOfLWJDCLRJNlpRIyCb4UosD9jDXJJmXeRVaMfDX2-_xpCyqOiN6m6jhFpQj6rePPPidWgjNgCz4k7pNGHiv_Lz6j-baaf5ekrGLuY9H0T0ZLKF6HMYo?key=JRC6SFqjT-nQvzu8BPKr5iEx" alt="Blade template syntax example" class="responsive-img" />
+
+  <p>We’ll explore Blade later — for now, know that Laravel compiles it into HTML.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe4aVEzgjwajSSZlRdsxlLkcgHOH2U4HTw5BMNws7peyzVnbPJDCqSSwPsa-e0XR0XO-4MFrfQ7dZhp9eC7oSYj3-iOi7nYPrdbcnC7orEiXIBtbhhJJ3oj_htufU61Ogx5bTCSxDl2Hjqjfd6l-Bxiow?key=JRC6SFqjT-nQvzu8BPKr5iEx" alt="Laravel compiled view output" class="responsive-img" />
+
+  <h2>Creating a New Route</h2>
+
+  <p>Add a second route:</p>
+
+  <pre><code>Route::get('/pizzas', function () {
+    return view('pizzas');
+});</code></pre>
+
+  <p>Make sure <code>pizzas.blade.php</code> exists in the views folder. You can copy the structure from <code>welcome.blade.php</code>.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd90T-5Hjl-x0Cpwcdz8LnGG8EJ_FCY9hLyOwbtklLWhMjBInh67wWIFZbxzS26aIymvJg24i6oAYG8_bgVc13ttm_KVtAhwKGkqa6HV7trxn0_dt3y6BrxhVq78D2cAfWBBVs7xpdVhuvPWqq9k2V-Hg?key=JRC6SFqjT-nQvzu8BPKr5iEx" alt="Pizzas view page in browser" class="responsive-img" />
+
+  <h2>Returning Other Data</h2>
+
+  <p>Laravel can return strings:</p>
+
+  <pre><code>Route::get('/pizza', function () {
+    return 'pizza';
+});</code></pre>
+
+  <p>Or JSON:</p>
+
+  <pre><code>Route::get('/pizza', function () {
+    return ['name' => 'veg pizzas', 'base' => 'classic'];
+});</code></pre>
+
+  <p>This sends a JSON response with content-type: <code>application/json</code>.</p>
+
+  <p>In the next module, we’ll learn how to pass data into views dynamically.</p>
+
+  <a class="back-link" href="index.html">← Back to Laravel Series</a>
+
+</body>

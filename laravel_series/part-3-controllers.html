@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laravel Controllers Explained</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+  <h1>Controllers</h1>
+
+  <p>
+    If you can recall, at the start of this course, we mentioned that Laravel uses the MVC approach.
+    We've already discussed the View (the "V" in MVC), but now it's time to explore another part of the puzzle: the Controller ("C").
+  </p>
+
+  <p>
+    From previous modules, we know that when Laravel receives a request, the appropriate route handler takes care of it and sends a view back to the browser.
+  </p>
+
+  <p>
+    For example, if we receive a request for our <code>/pizzas</code> route, the function in our route handler executes (defining some data and returning the view).
+    Essentially, the function that fires depends on the request received.
+  </p>
+
+  <p>
+    While defining functions directly in the route file works in small projects, it can become messy in real-world scenarios with many routes and complex logic.
+  </p>
+
+  <h2>What do we do then?</h2>
+
+  <p>
+    The best approach is to create an external file to hold all our callback functions. We call this file a <strong>controller</strong>.
+    A controller is a special class in Laravel where we define our route logic and then reference those functions in our route file.
+  </p>
+
+  <p>
+    This makes our code cleaner, more readable, reusable, and easier to maintain. That said, we don't need a controller for every single route.
+    Instead, we group related routes under a single controller. For example, all pizza-related routes (<code>/pizzas</code>, <code>/pizzas/{id}</code>) would go under a <code>PizzaController</code>.
+  </p>
+
+  <h2>How can we create a controller?</h2>
+
+  <p>
+    There are two ways: manually or using Artisan (Laravel’s CLI tool).
+  </p>
+
+  <p>
+    Open your terminal, navigate to the <code>pizzahouse</code> directory, and run:
+  </p>
+
+  <pre><code>php artisan make:controller PizzaController</code></pre>
+
+  <p>
+    This follows Laravel's naming convention: "Pizza" starts with a capital letter, and "Controller" is appended.
+  </p>
+
+  <p>
+    Go to <code>app/Http/Controllers</code> to find your new <code>PizzaController</code> class, which should look like this:
+  </p>
+
+  <pre><code class="language-php">&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class PizzaController extends Controller
+{
+    //
+}
+</code></pre>
+
+  <h2>Defining Route Functions in the Controller</h2>
+
+  <p>
+    Now we’ll move the logic from our <code>/pizzas</code> route into this controller.
+  </p>
+
+  <pre><code class="language-php">class PizzaController extends Controller
+{
+    public function index() {
+        $pizza = [
+            ['type' =&gt; 'hawaiian', 'base' =&gt; 'cheesy crust'],
+            ['type' =&gt; 'volcano', 'base' =&gt; 'garlic crust'],
+            ['type' =&gt; 'veg supreme', 'base' =&gt; 'thin &amp; crispy']
+        ];
+
+        $name = request('name');
+
+        return view('pizzas', [
+            'pizzas' =&gt; $pizza,
+            'name' =&gt; $name,
+        ]);
+    }
+}
+</code></pre>
+
+  <p><strong>Note:</strong> The method name <code>index</code> is a naming convention for routes like <code>/pizzas</code>.</p>
+
+  <h3>For <code>/pizzas/{id}</code>:</h3>
+
+  <pre><code class="language-php">public function show($id) {
+    return view('details', ['id' =&gt; $id]);
+}
+</code></pre>
+
+  <p><strong>Note:</strong> When we define functions in a controller, they are called <em>actions</em>.</p>
+
+  <h2>Updating Routes to Use the Controller</h2>
+
+  <p>
+    Remove the route callback functions from <code>web.php</code> and replace them with controller references:
+  </p>
+
+  <pre><code class="language-php">Route::get('/pizzas', 'PizzaController@index');
+Route::get('/pizzas/{id}', 'PizzaController@show');</code></pre>
+
+  <p><strong>Note:</strong> <code>index</code> and <code>show</code> are common naming conventions used by Laravel developers, but you can use other names if you prefer.</p>
+
+  <p>
+    If you save and preview your site, you won’t see any functional change—just a better organized code structure.
+  </p>
+
+  
+  <h2>Summary</h2>
+
+  <p>
+    Controllers are the place to define the logic that powers your routes. As we continue in this course, we’ll use them more frequently and in more advanced scenarios.
+  </p>
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+
+</body>
+</html>

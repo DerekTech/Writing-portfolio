@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blade Loops</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>Blade Loops</h1>
+
+<p>In the previous module, we introduced Blade basics with some useful syntax to follow. In this module, we'll take a look at using loops in Blade. Like loops in Javascript, we can use loops in Blade to iterate through an array of data and output different template for each data in the array.</p>
+
+<p>Without further ado, let's dive right in; </p>
+
+<h2>For Loop</h2>
+
+<p>It starts with @for and ends with @endfor. Like PHP the Blade For Loop takes in an initializer, the condition, and the incrementor as arguments. As we will see in the example below;</p>
+
+<pre><code class="language-html">&lt;div class="content"&gt;
+
+        &lt;div class="title m-b-md"&gt;
+
+            Pizza List
+
+        &lt;/div&gt;
+
+        &lt;p&gt;{{ $type }} - {{ $base }} - {{ $price }}&lt;/p&gt;
+
+        @for ($i = 0; $i &lt; 5; $i++)
+
+        &lt;p&gt;the value of i is {{ $i }}&lt;/p&gt;
+
+        @endfor
+
+&lt;/div&gt;
+</code></pre>
+
+<p>Initializer : ($i = 0)</p>
+<p>Condition : ($i &lt; 5)</p>
+<p>Incremetor: ($i++)</p>
+
+<p>What this example does is; for every value of i, it prints what's in the p tag until i is no longer less than 5. So if we save this and preview, we'll get this result;</p>
+
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcAzkutmmv621DqGWiLe8Fj9hjnNofdpA_MiFAC6isuNG_Iyhosf1nzWFpjL7igROmpA0IvoQfwdnQa3-5amstqFfaMdtghd0HQoPPYu8pbeYPZNAkzKhOh1U42qeDjOve2BX2cjznfX7q0P7XoGF1DA5I?key=0WI94Fu5xqY9iYTtLoT54vXV" alt="for loop example" />
+
+<p>Now, this is a simple application of the for Loop. What if we have an array or list of templates, and we want to iterate through that list and output a bit of code for each template. How do we go about that?</p>
+
+<p>Let's look at an example;</p>
+
+<pre><code class="language-php">Route::get('/pizzas', function () {
+
+    //get data from database
+
+    $pizza = [
+
+        ['type' =&gt; 'hawaiian', 'base' =&gt; 'cheesy crust'],
+
+        ['type' =&gt; 'volcano', 'base' =&gt; 'garlic crust'],
+
+        ['type' =&gt; 'veg supreme', 'base' =&gt; 'thin &amp; crispy']    
+
+    ];
+
+    return  view('pizzas', ['pizzas' =&gt; $pizza]);
+
+});</code></pre>
+
+<p>In our pizzas route handler, we're passing in the $pizza variable, with an array carrying arrays as items, into a property name called 'pizzas', so that we can have access to this array in our pizzas.blade.php file.</p>
+
+<p>Now, we want to loop through this array and print the type of pizza for each item. Here is how we can achieve that;</p>
+
+<pre><code class="language-html">&lt;div class="content"&gt;
+
+        &lt;div class="title m-b-md"&gt;
+
+            Pizza List
+
+        &lt;/div&gt;
+
+        @for ($i = 0; $i &lt; count($pizzas); $i++)
+
+        &lt;p&gt;{{ $pizzas[$i]['type'] }}&lt;/p&gt;
+
+        @endfor
+
+&lt;/div&gt;
+</code></pre>
+
+<p>Here, count($pizzas) provides the number of items in the $pizzas array. The line of code in the p tag above provides the value of 'type' in every array within the $pizzas array. So, if we save this and preview, we get;</p>
+
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd3O0L1GKUhe7f8mWBLx1CxSnRDthlH2RdrwXH68OwvzawW-KyysaDCkJnZt7RHrbjlMzUNXodZqdDTqbriLtUSOzyGy2Zoj4zXBlu13KftnxHHW7blR0j67B3g3Gc2TFSfqgtLM7gUvnP2LzRb7_f9PKE?key=0WI94Fu5xqY9iYTtLoT54vXV" alt="for loop on array output" />
+
+<p>We can both agree that the code in the example above seems a bit confusing. There is an easy way to do this same iteration. This takes us to the next Blade loop.</p>
+
+<h2>ForEach Loop</h2>
+
+<p>To loop through an array using the forEach loop involves starting with @foreach and closing with @endforeach. Let's look at an example;</p>
+
+<pre><code class="language-html">&lt;div class="content"&gt;
+
+        &lt;div class="title m-b-md"&gt;
+
+            Pizza List
+
+        &lt;/div&gt;
+
+        &lt;!-- @for ($i = 0; $i &lt; count($pizzas); $i++)
+
+        &lt;p&gt;{{ $pizzas[$i]['type'] }}&lt;/p&gt;
+
+        @endfor --&gt;
+
+        @foreach ($pizzas as $pizza)
+
+        &lt;div&gt;
+
+            {{ $pizza['type'] }} - {{ $pizza['base'] }}
+
+        &lt;/div&gt;
+
+        @endforeach
+
+&lt;/div&gt;
+</code></pre>
+
+<p>Looping through the same array as our previous example, but this time, we print the pizza type and the base values.</p>
+
+<p>The beginning of the Foreach loop;  @foreach ($pizzas as $pizza) takes in the $pizzas array and refers to each item in the array as $pizza. Now, you can call this ($pizza) anything you want, for this case, we went for $pizza because it makes sense to refer to a single item in our $pizzas array as $pizza.</p>
+
+<p>Since each item in the array is assigned to $pizza, to access the value of 'type and 'base', we use  {{ $pizza['type'] }} - {{ $pizza['base'] }}. Does that make sense?</p>
+
+<p>If we save this and preview, this is what we'll have;</p>
+
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXewM2x5T2pqWf953YzbZvxVUJ384twm-dh9xLq_xN6ANN3vgv6c79MjJwuXj4bezX__j5teFS3yNKpTaV4sMmyCvMcDG_xfmOdomEgYYHLQusnb7uxBmBjhm1BCyoE2lZuba0g3wePi6gm-GHlv0pbCBTc?key=0WI94Fu5xqY9iYTtLoT54vXV" alt="foreach loop output" />
+
+<p>The foreach loop provides us access to another property, embedded in a loop variable. So if we call the loop variable, we can access the properties of the main array.</p>
+
+<p>For example;</p>
+
+<pre><code class="language-html">
+ @foreach ($pizzas as $pizza)
+
+  &lt;div&gt;
+
+    {{ $loop-&gt; index }} {{ $pizza['type'] }} - {{ $pizza['base'] }}
+
+  &lt;/div&gt;
+
+@endforeach
+</code></pre>
+
+<p>Loop-&gt;index gives us the index of the $pizzas array. If we save this and preview, we'll have the index of each pizza type and base, like so;</p>
+
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcqrDUukA9YpMUwkAYX6tOoSKATMMegbKSlnw0fTdk82r3NZTrD6g85fJm6-cjrV8_jx7KIkKU4sU-JCF67CIWUx4Fw4xmLiNtVhbNFiSq6gE3P5m9T9il2M2lToW05VWMRl3B0LKoaiJz9Z_qHpvGDwd8?key=0WI94Fu5xqY9iYTtLoT54vXV" alt="loop index output" />
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+</body>
+</html>

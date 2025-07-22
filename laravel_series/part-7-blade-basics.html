@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blade Basics</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1>Blade Basics</h1>
+    <p>In the last module, we discussed how we can send data from our route handler into the view and then output the variable in our view file (pizzas.blade.php) for Laravel to send to the browser.</p>
+    <p>Now, the syntax we used to output our variables in the view is a blade syntax, and in this module, we will be looking at more blade syntax.</p>
+    <p>Blade is a template engine that makes the use of data and logic inside of a view easier as opposed to regular PHP. And for this course, we will be using Blade for all our views because it makes things easier for us.</p>
+    <p>What Laravel does with Blade is that it compiles it into HTML behind the scenes and sends the resulting web page to the browser as requested by the user.</p>
+    <p>Asides outputting variables, what else does Blade have to offer? There are many things blade can do, let's look at the more common ones;</p>
+
+    <h1>The IF statement</h1>
+    <p>This statement starts with @ and then if, that is, <code>@if</code> and closes with <code>@endif</code>. You'll see the at (@) sign in almost every blade directive you'll come across. The if statement takes in conditions, for example:</p>
+
+    <pre><code class="language-php">
+    @if($price &gt; 15)
+    &lt;p&gt;pizza is expensive&lt;/p&gt;
+    @endif
+    </code></pre>
+
+    <p>What these few lines of code mean is; if the pizza price is above 15, it will display "pizza is expensive" on the browser.</p>
+    <p>If we check our preview page, we will not notice any changes, and that's because our price in the route handler is set to 10. If we make it 17 and save, we should see the text in the preview page because it is over 15.</p>
+
+    <p>If we want to add another condition, let's say, we also want to print something if the price is less than 5. Here is how we'll do it:</p>
+
+    <pre><code class="language-php">
+    @if($price &gt; 15)
+    &lt;p&gt;pizza is expensive&lt;/p&gt;
+    @elseif($price &lt; 5)
+    &lt;p&gt;this pizza is affordable&lt;/p&gt;
+    @endif
+    </code></pre>
+
+    <p>In summary, if the first condition is true, the second condition doesn't run. But if the first condition is not true, it checks to see if the second condition is true and prints the text if it's true. And if both conditions are not true, nothing happens. However, to get something, we add <code>@else</code>, for example:</p>
+
+    <pre><code class="language-php">
+    @if($price &gt; 15)
+    &lt;p&gt;pizza is expensive&lt;/p&gt;
+    @elseif($price &lt; 5)
+    &lt;p&gt;this pizza is affordable&lt;/p&gt;
+    @else
+    &lt;p&gt;this pizza is in the normal price range&lt;/p&gt;
+    @endif
+    </code></pre>
+
+    <h1>The UNLESS statement</h1>
+    <p>This is the opposite of the if statement. Let's look at an example.</p>
+
+    <pre><code class="language-php">
+    @unless($base == 'cheesy crust')
+    &lt;p&gt;you don't have a cheesy crust&lt;/p&gt;
+    @endunless
+    </code></pre>
+
+    <p>What this means is that, unless the base is a cheesy crust, print the text in the p tag. In other words, it will only print the text in the p tag if the condition is false.</p>
+
+    <h1>The PHP directive</h1>
+    <p>This allows us to use regular PHP in Blade, to do this, you write your PHP in this tag. It starts with <code>@php</code> and closes with <code>@endphp</code>.</p>
+    <p>Why would you need to output PHP in blade?</p>
+    <p>While there are different things blade can do for us, PHP is broader, giving you more control. If the need arises, you only have to open the <code>@php</code> and do your thing.</p>
+    <p>For example:</p>
+
+    <pre><code class="language-php">
+    @php
+    $name = 'shaun';
+    echo ($name);
+    @endphp
+    </code></pre>
+
+    <p>If you save this and preview, you'll see the name Shaun on your pizza list page.</p>
+    <p>Now that you know the basics of blade syntax, the top of the welcome.blade.php file will look more familiar to you. In the next module, we will be discussing Blade loops.</p>
+
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+</body>
+</html>

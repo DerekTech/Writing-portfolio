@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creating a Database - Laravel 6 Tutorial</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>Creating a Database</h1>
+  <p>We've discussed views, routes, and controllers. It's time to make a shift to the database side of things, so we can start incorporating some real data for our Pizzas...</p>
+
+  <h2>Using PHPMyAdmin</h2>
+  <p>Step 1: Run Xampp, start Apache and MySql servers,</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcvJ0GSDZYdyUmqEQy0NLQAMEyTznKk4pxhNYZGY6eda8B06wOkSpRrE1TqGHWfoaxZ-WrDhPAviqystag6r9qLhnGv4k3XWKhcuvL2r9dwI5DxBsNrSWpLDQkHh1WGctpUtxGynfvac2FR--bFMv7vuw?key=55gpjK7a7q2RV77c7JLOzQ" alt="XAMPP panel">
+
+  <p>Step 2: Click on the MySql admin. This will open up the PHPMyAdmin page.</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcJHBItn6XXV8Vt2OEs3uRVe563j_koxvLdGe-eanjfx5O8QZJUYoOEW_Z0JEB9hdWP1DfLEEZE7Wqu7QGtvlpHqqUIEuXJ0TD5u-7roxXIchoP_W6D_T39KUUzPG8pPwwZoxQHZaRdUe0BHWTKOzLfoX8?key=55gpjK7a7q2RV77c7JLOzQ" alt="phpMyAdmin">
+
+  <p>Step 3: Click on <strong>New</strong> and enter <code>pizzahouse</code> as the database name.</p>
+
+  <h2>Using Command Line</h2>
+  <p>Step 1: Add MySQL to your PATH variable. Go to XAMPP > MySQL > bin, copy the path...</p>
+
+  <p>Search "env" in Start Menu:</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXerifOWBlD62nmzcIF6l47lbUhGjkuqkZqIW_eG_jsR4WAUdzWE70p-i3pFFxDlon8Ninog37fhBW4RAlLU-SxInsGoGO3XW5jEQ1Z_vHZOCCczEQbfN2W7Qcava16opIzKc1PufidS3oea6UWS5yxJge8?key=55gpjK7a7q2RV77c7JLOzQ" alt="Environment Variables">
+
+  <p>Step 2: Login to MySQL from terminal:</p>
+  <pre><code class="language-bash">mysql -u root</code></pre>
+  <p>You should see a successful login message like:</p>
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdS0JVEI12hUVNXWsE9h0AZbbkPlq9M7YZ3qytQgXkyVhzKWByhj-HN4XXquXX5StjNmdCS01N76lIIZHohbRFDAuP7BnPvjJucBi6vLwarhzJzeSAFZiti0e9niMYR64IPv0_LEHs8E_jabPmOfjmCegU?key=55gpjK7a7q2RV77c7JLOzQ" alt="MySQL Login">
+
+  <p>Step 3: Create the database:</p>
+  <pre><code class="language-sql">CREATE DATABASE pizzahouse;</code></pre>
+
+  <p>Step 4: Configure Laravel's database connection:</p>
+  <pre><code class="language-env">DB_DATABASE=pizzahouse
+DB_USERNAME=root
+DB_PASSWORD=</code></pre>
+
+  <p>Done! You've connected Laravel to a new database. In the next module, we’ll break down migrations so they’re easy to understand and use confidently.</p>
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+</body>
+</html>

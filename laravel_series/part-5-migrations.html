@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laravel Migrations Tutorial</title>
+  <link rel="stylesheet" href="laravel-styles.css">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>Migrations</h1>
+
+  <p>In the previous module, we saw how to create our MySql database. Now, we need to create tables in our database, and that's where "migrations" comes in.</p>
+
+  <h2>What are Migrations?</h2>
+
+  <p>Migrations allow us to programmatically design the structure of our tables in our database from our code. And we do that using migration files.</p>
+
+  <p>For example, for our pizza delivery website that we are currently working on, we would have a table in our database that stores pizza records. That table would be called "pizzas," We would create a migration file to define the different table columns, like the pizza type and toppings. So when we run our migration file, it would create our database table with the columns in our migration file.</p>
+
+  <p>Migration files in our projects are stored in <code>database > migration</code>. And in that folder, you'll find three migration files created by Laravel for us. If we open up one of them, we'll see that they are classes with two functions; <code>up()</code> and <code>down()</code>. The up function is responsible for creating and defining the structure of the table.</p>
+
+  <pre><code class="language-php">class CreateUsersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+}</code></pre>
+
+  <p>That's an example of a migration file. So, let's create one for our project. You can do this manually or using artisan, as we have seen in previous applications.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdoMKe1s0WSKeybf81tcMmtZ1lWrAg4DcpTBuuf2Qzg_b74lgx6fUF_GYoAOzJDNexxSilFb7KUbB8cZpA4tBuhWirWg5t3Yt7ptV9rjMUXvDp8qiShm-ZaQpmmxcS_fvJiJi0yLHnPJG87mJlbRTXZgl4?key=iRb_D8q0GyB9MbhBip5BLQ" alt="Migration Screenshot">
+
+  <p>We use <code>create_pizzas_table</code> because it follows the naming convention of the sample migration files. You can name yours differently; it doesn't change much. If we access our just-created migration file, we'll see the class and the two functions (up and down function).</p>
+
+  <pre><code class="language-php">&lt;?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePizzasTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('pizzas', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('pizzas');
+    }
+}</code></pre>
+
+  <p>We'll leave the columns Laravel creates for us, but we want to add columns of our own. We want the type of pizza, the base, and the name of the person placing the order. They are all strings so, we'll follow the example migration file to add ours, like so;</p>
+
+  <pre><code class="language-php">public function up()
+{
+    Schema::create('pizzas', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->string('type');
+        $table->string('base');
+        $table->string('name');
+    });
+}</code></pre>
+
+  <p>Now, we've created our migration file, how do we run it? We can do this using artisan; in our terminal, in the pizzahouse directory, type in;</p>
+
+  <pre><code class="language-bash">php artisan migrate</code></pre>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXel7TBAjR0gTyiTPeKVZGPZ6vlPAYaDsPs44xANoSWgTKpIfH7caDyXOw-cji3NNX1GC8mnA-ZroUMVIl1ErQ5D1iCdTbUycLuHBE64x2p3vtdEnKbOc7MIHDcZWHFyXw6yXwtwM_j9xK7Pl3mHGylrILM?key=iRb_D8q0GyB9MbhBip5BLQ" alt="Terminal Migration Output">
+
+  <p>What this does is it goes through all the migration files and runs their up functions. So, if we go to our phpMyadmin page, we should see all the four migration files tables.</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcUpxZW6LqAyXVSBtPBwhJSxDjD5bIHb6Nmcymp6dIsXE07gkOXOHTHhajX5dii-eAIDp1dXkLEdcaAXigXGjnIp1dK4OznGaV6ugRT2Io5HOkiARL-W69JA342LELXOIzn-o_M_6iNlnJfmxeka2ZaEDA?key=iRb_D8q0GyB9MbhBip5BLQ" alt="phpMyAdmin Tables">
+
+  <p>And if we click on pizzas, the migration file we created, we'll see six columns like so;</p>
+
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfig3cQUjt-EQkXYAH6A32qpTx5OLehaq7JVyI7EMplJtrEkeAcZXGlizDAhMUcbgvvDnQSthvArtBQfQX4IoPaMFb4HcURQ6WC0c-AKBHabGbBqI4mUx5j28F4lguap6Fq5wePExsyfNexpfQViJlkI_k?key=iRb_D8q0GyB9MbhBip5BLQ" alt="Pizza Table Columns">
+
+  <p>Hopefully, this works for you; however, if you're using an older version of Xampp or MariaDB, you might get an error in your terminal, something like; syntax error or an access violation. If you see such errors, we'll recommend that you download a newer version of MariaDB, and you can do that by installing a new version of Xampp.</p>
+
+  <p>After which, you return to your terminal and type in;</p>
+
+  <pre><code class="language-bash">php artisan migrate:fresh</code></pre>
+
+  <p>What this does is it cancels everything you were doing before and runs all the migrations afresh. Hopefully, that fixes any problems you're facing, and you fully understand how migrations work.</p>
+
+  <p>In our next module, we'll discuss more on migrations and the different migration commands we can run using artisan. See you in the next module.</p>
+
+  <a class="back-link" href="index.html">← Back to Laravel Series</a>
+
+
+  
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+</body>
+</html>
